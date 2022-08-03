@@ -7,6 +7,8 @@ import {
   DragEnter,
   DragLeave,
   DragDrop,
+  createNewElement,
+  close
 } from "./helper/Dragable";
 import axios from "axios";
 
@@ -61,6 +63,7 @@ function App() {
   // handlePrompt
   function handlePrompt(e) {
     let val = window.prompt("Enter value");
+    // check values is valid or not
     if (val == null) {
       alert("Please enter valid number");
       return;
@@ -129,6 +132,17 @@ function App() {
     }, 250);
   }
 
+
+  // handleClick
+  function handleClick(e) {
+     let operand  = e.target.innerText;
+      if(operand === '>' || operand === '<') {
+        let newElement = createNewElement(e);
+        containerRef.current.append(newElement);
+        close();
+      }
+  }
+
   return (
     <div className="App">
       <div className="Alphabates">
@@ -154,6 +168,7 @@ function App() {
             key={idx}
             onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
+            onClick={(e) => handleClick(e)}
           >{`${operand}`}</div>
         ))}
         <div className="RHS" onClick={handlePrompt}>

@@ -1,6 +1,11 @@
 
 let newElement,count = 1;
 function DragStart(e){
+   createNewElement(e);
+}
+
+// create new element
+function createNewElement(e) {
    let style;
    if(e.target.innerText === 'A' || e.target.innerText === 'B' || e.target.innerText === 'C' || e.target.innerText === 'E' || e.target.innerText === 'F' || e.target.innerText === 'D'){
      style = 'empty';
@@ -25,9 +30,8 @@ function DragStart(e){
    newElement.classList.add(`${style}`);
    newElement.setAttribute("id", `empty-${count++}`);
    newElement.append(span);  // append create new element
-
+   return newElement;
 }
-
 
 function DragEnd(e){
   e.target.classList.remove("hold");
@@ -46,8 +50,12 @@ function DragLeave(e){
 }
 
 function DragDrop(e){
-    e.target.classList.remove("hovered");
+  e.target.classList.remove("hovered");
   e.target.appendChild(newElement);
+  close();
+}
+
+function close(){
   const closeBtns = document.querySelectorAll(".close");
   removeElements(closeBtns);
 }
@@ -77,5 +85,7 @@ export {
     DragOver,
     DragEnter,
     DragLeave,
-    DragDrop
+    DragDrop,
+    createNewElement,
+    close
 }
