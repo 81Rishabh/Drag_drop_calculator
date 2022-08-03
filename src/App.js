@@ -25,7 +25,7 @@ function App() {
 
   // fetch alphas
   function fetchAlphas() {
-     axios.get('http://localhost:5000/').then((result) => {
+     axios.get('https://drag-calc.herokuapp.com/').then((result) => {
        setalphas(result.data.data);
     }).catch((err) => {
       console.log(err);
@@ -41,9 +41,11 @@ function App() {
   function handleDragEnd(e) {
     DragEnd(e);
   }
+
   function handleDragOver(e) {
     DragOver(e);
   }
+
   function handleDragEnter(e) {
     DragEnter(e);
   }
@@ -81,7 +83,8 @@ function App() {
     const containerChilds = containerRef.current.children;
     for(var i = 0; i < containerChilds.length-1; i++) {
        let val = containerChilds[i].firstChild.innerText;
-    
+        
+      //  handle expressions
        if(val === '+' || val === '-' || val === '*' || val === '/'){
           exp += val;
         }
