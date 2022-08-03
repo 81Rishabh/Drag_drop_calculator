@@ -12,7 +12,6 @@ import {
 import axios from 'axios';
 
 function App() {
-  console.log("rendered");
   const [alphas, setalphas] = useState([]);
   const [promptVal, setpropmptVal] = useState(0);
   const containerRef = useRef();
@@ -94,7 +93,6 @@ function App() {
         else {
           let dataVal = containerChilds[i].getAttribute('data-value').toString();
           exp += dataVal.toString();
-          console.log(exp);
         }
     } 
     solveExpression(exp,comparison,promptVal);
