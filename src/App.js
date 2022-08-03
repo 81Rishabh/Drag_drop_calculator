@@ -59,7 +59,13 @@ function App() {
   // handlePrompt
   function handlePrompt(e) {
     let val = window.prompt("Enter value");
-    setpropmptVal(val);
+    if(val == null) {
+      alert("Please enter valid number");
+      return;
+    }
+    else {
+      setpropmptVal(val);
+    }
     
     // create new element
     let newElement = document.createElement("div");
